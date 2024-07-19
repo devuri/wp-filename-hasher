@@ -1,4 +1,4 @@
-# ImageNameHasher Plugin
+# Image Name Hasher Plugin
 
 ## Description
 
