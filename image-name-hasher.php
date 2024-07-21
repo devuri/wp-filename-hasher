@@ -4,7 +4,7 @@
  * Plugin Name:       Image NameHas her
  * Plugin URI:        https://github.com/devuri/wp-basic-plugin
  * Description:       Automatically renames uploaded images in WordPress to a unique hashed filename.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 5.3.0
  * Requires PHP:      7.3.5
  * Author:            uriel
