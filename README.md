@@ -4,6 +4,10 @@
 
 The `Image Name Hasher` plugin automatically renames uploaded images in WordPress to a unique hashed filename. This helps to avoid conflicts with existing filenames and enhances security by generating unpredictable names for uploaded images.
 
+## Example
+
+An image uploaded with the original name `example.jpg` might be renamed to something like `5d41402abc4b2a76b9719d911017c592.jpg`.
+
 ## Features
 
 - Automatically renames uploaded images to a hashed filename.
@@ -30,10 +34,6 @@ Once activated, the plugin will automatically rename any image uploaded through 
    - The hashed ID is combined with the original file extension to create the new filename.
    - The original filename is replaced with the new hashed filename.
 3. **File Upload**: The image is uploaded with the new hashed filename.
-
-## Example
-
-An image uploaded with the original name `example.jpg` might be renamed to something like `5d41402abc4b2a76b9719d911017c592.jpg`.
 
 ## License
 
