@@ -41,4 +41,4 @@ This plugin is open-source and licensed under the [GPL-2.0-or-later](https://www
 
 ## Support
 
-For any issues or feature requests, please open an issue on the plugin's [GitHub repository](https://github.com/your-repo/image-name-hasher).
+For any issues or feature requests, please open an issue on the plugin's [GitHub repository](https://github.com/devuri/image-name-hasher).
