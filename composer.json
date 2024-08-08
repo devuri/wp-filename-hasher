@@ -1,5 +1,5 @@
 {
-    "name": "devuri/filename-hasher",
+    "name": "devuri/wp-filename-hasher",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-only",
     "description": "Automatically renames uploaded files/images in WordPress to a unique hashed filename.",
