@@ -9,7 +9,7 @@
 >
     <projectFiles>
         <directory name="src" />
-		<file name="image-name-hasher.php" />
+		<file name="filename-hasher.php" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
@@ -34,7 +34,7 @@
 		<UnresolvableInclude>
 			<errorLevel type="suppress">
   			<directory name="src" />
-  			<file name="image-name-hasher.php" />
+  			<file name="filename-hasher.php" />
   		  </errorLevel>
 		</UnresolvableInclude>
 		<MissingReturnType>
