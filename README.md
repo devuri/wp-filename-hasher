@@ -2,11 +2,11 @@
 
 ## Description
 
-The `File Name Hasher` plugin automatically renames uploaded images in WordPress to a unique hashed filename. This helps to avoid conflicts with existing filenames and enhances security by generating unpredictable names for uploaded images.
+The `File Name Hasher` plugin automatically renames uploaded files/images in WordPress to a unique hashed filename. This helps to avoid conflicts with existing filenames and enhances security by generating unpredictable names for uploaded files/images.
 
 ## Features
 
-- Automatically renames uploaded images to a hashed filename.
+- Automatically renames uploaded files/images to a hashed filename.
 - Ensures unique filenames for each uploaded image.
 - Enhances security by making filenames unpredictable.
 
