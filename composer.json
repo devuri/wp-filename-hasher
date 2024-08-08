@@ -32,7 +32,7 @@
         }
     },
     "scripts": {
-		"build": [
+        "build": [
             "composer install -q",
             "composer test",
             "composer wpcs-lint",
@@ -41,13 +41,13 @@
             "composer lint",
             "composer install --no-dev"
         ],
-		"wpcs-fix": [
+        "wpcs-fix": [
             "composer install -q",
             "phpcbf src",
             "phpcbf filename-hasher.php",
             "phpcbf uninstall.php"
         ],
-		"wpcs-lint": [
+        "wpcs-lint": [
             "composer install -q",
             "phpcs -ns src",
             "phpcs -ns filename-hasher.php"
@@ -66,7 +66,7 @@
             "composer install",
             "@php ./vendor/bin/phpstan analyse"
         ],
-		"lint": [
+        "lint": [
             "composer install -q",
             "composer php-compat",
             "composer wpcs-lint",
@@ -80,7 +80,7 @@
             "composer install -q",
             "vendor/bin/psalm --alter --issues=InvalidNullableReturnType,MismatchingDocblockReturnType,InvalidReturnType,InvalidFalsableReturnType,LessSpecificReturnType,MissingParamType"
         ],
-		"php-compat": [
+        "php-compat": [
             "composer install",
             "vendor/bin/phpcs filename-hasher.php src/ --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 7.3-"
         ],

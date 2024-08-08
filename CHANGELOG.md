@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/devuri/wp-filename-hasher/compare/v0.1.1...v0.1.2) (2024-08-08)
+
+
+### Bug Fixes
+
+* renamed to `filename-hasher` ([4a8a65b](https://github.com/devuri/wp-filename-hasher/commit/4a8a65b3cdbe891a8e6f3796a38411a5cf4faff7))
+
 ## [0.1.1](https://github.com/devuri/image-name-hasher/compare/v0.1.0...v0.1.1) (2024-07-21)
 
 
