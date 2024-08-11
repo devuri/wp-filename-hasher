@@ -21,6 +21,11 @@ class HashFiles
     {
         $file_info   = pathinfo( $file['name'] );
         $extension   = $file_info['extension'];
+
+		if ( $extension === 'zip' ) {
+			return $file;
+		}
+
         $unique_id   = bin2hex( random_bytes( 32 ) );
         $hashed_name = hash( 'sha256', $unique_id );
         $new_file_name = $hashed_name . '.' . $extension;
