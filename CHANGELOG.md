@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.3](https://github.com/devuri/wp-filename-hasher/compare/v0.1.2...v0.1.3) (2024-08-26)
+
+
+### Bug Fixes
+
+* do not hash `zip` files ([a8c273a](https://github.com/devuri/wp-filename-hasher/commit/a8c273aee844a510bfc79e9938415071f9bb1c96))
+* only hash images and PDFs ([022233b](https://github.com/devuri/wp-filename-hasher/commit/022233b033ec27152aa24e0f6af61629e5122d68))
+
+
+### Miscellaneous Chores
+
+* v0.1.3 version bump ([127b67b](https://github.com/devuri/wp-filename-hasher/commit/127b67ba37cd7f444d9151a6699271233d8985c0))
+
 ## [0.1.2](https://github.com/devuri/wp-filename-hasher/compare/v0.1.1...v0.1.2) (2024-08-08)
 
 
