@@ -19,11 +19,33 @@ if ( ! \defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// setup option IDs.
+\define( 'REGISTERED_WPFNH_SETTINGS_ID', 'wpfnh_filename_hasher_settings' );
+\define( 'ALLOWED_EXTENSIONS_OPTION_ID', 'wpfnh_allowed_extensions' );
+\define( 'KEEP_ORIGINAL_PREFIX_OPTION_ID', 'wpfnh_keep_original_prefix' );
+\define( 'CUSTOM_PREFIX_OPTION_ID', 'wpfnh_custom_prefix' );
+
 require_once plugin_dir_path( __FILE__ ) . 'src/HashFiles.php';
+
+$allowed_extensions   = explode( ',', get_option( ALLOWED_EXTENSIONS_OPTION_ID, 'jpg,jpeg,png,gif,bmp,pdf' ) );
+$keep_original_prefix = get_option( KEEP_ORIGINAL_PREFIX_OPTION_ID, '0' );
+$custom_prefix        = get_option( CUSTOM_PREFIX_OPTION_ID, '' );
 
 // maybe later allow the user to change allowed files.
 $file_hasher = new FileNameHasher\HashFiles(
-    [ 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'pdf' ]
+    $allowed_extensions,
+    (int) $keep_original_prefix,
+    $custom_prefix
 );
 
 $file_hasher->add_prefilter();
+
+// remove options.
+register_activation_hook(
+    __FILE__,
+    function (): void {
+		delete_option( ALLOWED_EXTENSIONS_OPTION_ID );
+		delete_option( KEEP_ORIGINAL_PREFIX_OPTION_ID );
+		delete_option( CUSTOM_PREFIX_OPTION_ID );
+	}
+);
