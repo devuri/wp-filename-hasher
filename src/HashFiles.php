@@ -77,7 +77,7 @@ class HashFiles
                      </tr>
 
                      <tr valign="top">
-                         <th scope="row">Keep Original Filename as Prefix</th>
+                         <th scope="row">Keep Original Filename</th>
                          <td>
                              <input type="checkbox" name="<?php echo esc_attr( KEEP_ORIGINAL_PREFIX_OPTION_ID ); ?>" value="1"
                                     <?php checked( $this->keep_original_prefix, 1 ); ?> />
