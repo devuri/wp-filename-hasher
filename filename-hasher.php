@@ -21,4 +21,9 @@ if ( ! \defined( 'ABSPATH' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . 'src/HashFiles.php';
 
-new FileNameHasher\HashFiles();
+// maybe later allow the user to change allowed files.
+$file_hasher = new FileNameHasher\HashFiles(
+    [ 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'pdf' ]
+);
+
+$file_hasher->add_prefilter();
