@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.4](https://github.com/devuri/wp-filename-hasher/compare/v0.1.3...v0.1.4) (2024-08-26)
+
+
+### Features
+
+* adds options in `tools` sub menu ([fcae56c](https://github.com/devuri/wp-filename-hasher/commit/fcae56c4641b193eae0dcbab6e64860d874763e8))
+
+
+### Miscellaneous Chores
+
+* vbump-0.1.4 ([8f3ae19](https://github.com/devuri/wp-filename-hasher/commit/8f3ae1914b538d79030a29c053da2cd3bdf5ea99))
+
 ## [0.1.3](https://github.com/devuri/wp-filename-hasher/compare/v0.1.2...v0.1.3) (2024-08-26)
 
 
