@@ -124,6 +124,10 @@ class HashFiles
             return $file;
         }
 
+		if ( 'zip' === strtolower($file_info['extension']) ) {
+			return $file;
+		}
+
         $extension = strtolower( $file_info['extension'] );
 
         // Check if the extension is in the allowed list
