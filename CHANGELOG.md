@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.5](https://github.com/devuri/wp-filename-hasher/compare/v0.1.4...v0.1.5) (2024-08-27)
+
+
+### Features
+
+* adds `add_uniqid` with `uniqid()` ([eaa130b](https://github.com/devuri/wp-filename-hasher/commit/eaa130bc8c0a2dc0cb072e2bdf3f16104c5aeb0a))
+
+
+### Bug Fixes
+
+* always exclude `zip` files ([6b6b56e](https://github.com/devuri/wp-filename-hasher/commit/6b6b56e7c475536b15f62dd2b5a2c2207a32e17b))
+
+
+### Miscellaneous Chores
+
+* build ([088ac07](https://github.com/devuri/wp-filename-hasher/commit/088ac07ba5af7188bb21344dec2a2f46e5025152))
+
 ## [0.1.4](https://github.com/devuri/wp-filename-hasher/compare/v0.1.3...v0.1.4) (2024-08-26)
 
 
