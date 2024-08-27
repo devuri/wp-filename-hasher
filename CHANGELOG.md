@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/devuri/wp-filename-hasher/compare/v0.1.5...v0.1.6) (2024-08-27)
+
+
+### Features
+
+* adds options class and dynamic  properties ([4fff673](https://github.com/devuri/wp-filename-hasher/commit/4fff673fd376c50f47829df0ab9b5ac57a289c01))
+
 ## [0.1.5](https://github.com/devuri/wp-filename-hasher/compare/v0.1.4...v0.1.5) (2024-08-27)
 
 
