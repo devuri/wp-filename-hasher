@@ -38,7 +38,7 @@ $file_hasher = new FileNameHasher\HashFiles(
     $allowed_extensions,
     (int) $keep_original_prefix,
     $custom_prefix,
-	(int) $add_uniqid
+    (int) $add_uniqid
 );
 
 $file_hasher->add_prefilter();
@@ -47,9 +47,9 @@ $file_hasher->add_prefilter();
 register_activation_hook(
     __FILE__,
     function (): void {
-		delete_option( ALLOWED_EXTENSIONS_OPTION_ID );
-		delete_option( KEEP_ORIGINAL_PREFIX_OPTION_ID );
-		delete_option( CUSTOM_PREFIX_OPTION_ID );
-		delete_option( ADD_UNIQID_OPTION_ID );
-	}
+        delete_option( ALLOWED_EXTENSIONS_OPTION_ID );
+        delete_option( KEEP_ORIGINAL_PREFIX_OPTION_ID );
+        delete_option( CUSTOM_PREFIX_OPTION_ID );
+        delete_option( ADD_UNIQID_OPTION_ID );
+    }
 );

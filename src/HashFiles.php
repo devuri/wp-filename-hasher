@@ -24,7 +24,7 @@ class HashFiles
         $this->allowed_extensions   = ! empty( $allowed_extensions ) ? $allowed_extensions : $defaults;
         $this->keep_original_prefix = (bool) $keep_original_prefix;
         $this->custom_prefix        = ! empty( $custom_prefix ) ? $custom_prefix : null;
-		$this->add_uniqid = (bool) $add_uniqid;
+        $this->add_uniqid           = (bool) $add_uniqid;
 
         // register settings.
         add_action(
@@ -124,23 +124,23 @@ class HashFiles
             return $file;
         }
 
-		if ( 'zip' === strtolower($file_info['extension']) ) {
-			return $file;
-		}
+        if ( 'zip' === strtolower( $file_info['extension'] ) ) {
+            return $file;
+        }
 
         $extension = strtolower( $file_info['extension'] );
 
         // Check if the extension is in the allowed list
         if ( \in_array( $extension, $this->allowed_extensions, true ) ) {
             $unique_bytes = bin2hex( random_bytes( 32 ) );
-            $hashed_name = hash( 'sha256', $unique_bytes );
+            $hashed_name  = hash( 'sha256', $unique_bytes );
 
             // Start with the hashed name
-			if ( $this->add_uniqid ) {
-				$new_file_name = $hashed_name . uniqid( '-' );
-			} else {
-				$new_file_name = $hashed_name;
-			}
+            if ( $this->add_uniqid ) {
+                $new_file_name = $hashed_name . uniqid( '-' );
+            } else {
+                $new_file_name = $hashed_name;
+            }
 
             // Add the original filename prefix if the option is enabled
             if ( $this->keep_original_prefix ) {
