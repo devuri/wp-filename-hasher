@@ -4,7 +4,7 @@
  * Plugin Name:       File Name Hasher
  * Plugin URI:        https://github.com/devuri/filename-hasher
  * Description:       Automatically renames uploaded files/images in WordPress to a unique hashed filename.
- * Version:           0.1.4
+ * Version:           0.1.5
  * Requires at least: 5.3.0
  * Requires PHP:      7.3.5
  * Author:            uriel
