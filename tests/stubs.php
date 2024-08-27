@@ -4,3 +4,4 @@
 \define( 'ALLOWED_EXTENSIONS_OPTION_ID', 'wpfnh_allowed_extensions' );
 \define( 'KEEP_ORIGINAL_PREFIX_OPTION_ID', 'wpfnh_keep_original_prefix' );
 \define( 'CUSTOM_PREFIX_OPTION_ID', 'wpfnh_custom_prefix' );
+\define( 'ADD_UNIQID_OPTION_ID', 'wpfnh_add_uniqid' );

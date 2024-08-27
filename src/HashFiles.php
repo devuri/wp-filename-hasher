@@ -16,13 +16,15 @@ class HashFiles
     private $allowed_extensions;
     private $keep_original_prefix;
     private $custom_prefix;
+    private $add_uniqid;
 
-    public function __construct( array $allowed_extensions, int $keep_original_prefix, string $custom_prefix )
+    public function __construct( array $allowed_extensions, int $keep_original_prefix, string $custom_prefix, int $add_uniqid )
     {
         $defaults                   = [ 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'pdf' ];
         $this->allowed_extensions   = ! empty( $allowed_extensions ) ? $allowed_extensions : $defaults;
         $this->keep_original_prefix = (bool) $keep_original_prefix;
         $this->custom_prefix        = ! empty( $custom_prefix ) ? $custom_prefix : null;
+        $this->add_uniqid           = (bool) $add_uniqid;
 
         // register settings.
         add_action(
@@ -31,6 +33,7 @@ class HashFiles
                 register_setting( REGISTERED_WPFNH_SETTINGS_ID, ALLOWED_EXTENSIONS_OPTION_ID );
                 register_setting( REGISTERED_WPFNH_SETTINGS_ID, KEEP_ORIGINAL_PREFIX_OPTION_ID );
                 register_setting( REGISTERED_WPFNH_SETTINGS_ID, CUSTOM_PREFIX_OPTION_ID );
+                register_setting( REGISTERED_WPFNH_SETTINGS_ID, ADD_UNIQID_OPTION_ID );
             }
         );
 
@@ -60,45 +63,52 @@ class HashFiles
         $allowed_extensions = implode( ',', $this->allowed_extensions );
         ?>
          <div class="wrap">
-             <h1>File Name Hasher Settings</h1>
+             <h1>Hasher Settings</h1>
              <form method="post" action="options.php">
-                 <?php
-                    settings_fields( REGISTERED_WPFNH_SETTINGS_ID );
-					do_settings_sections( REGISTERED_WPFNH_SETTINGS_ID );
-					?>
-                 <table class="form-table">
-                     <tr valign="top">
-                         <th scope="row">Allowed File Extensions</th>
-                         <td>
-                             <input type="text" name="<?php echo esc_attr( ALLOWED_EXTENSIONS_OPTION_ID ); ?>"
+                <?php settings_fields( REGISTERED_WPFNH_SETTINGS_ID ); ?>
+                <?php do_settings_sections( REGISTERED_WPFNH_SETTINGS_ID ); ?>
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">Allowed File Extensions</th>
+                        <td>
+                            <input type="text" name="<?php echo esc_attr( ALLOWED_EXTENSIONS_OPTION_ID ); ?>"
                                     value="<?php echo esc_attr( $allowed_extensions ); ?>" />
-                             <p class="description">Enter the file extensions (comma-separated) that should be hashed, e.g., jpg,jpeg,png,gif,bmp,pdf.</p>
-                         </td>
-                     </tr>
+                            <p class="description">Enter the file extensions (comma-separated) that should be hashed, e.g., jpg,jpeg,png,gif,bmp,pdf.</p>
+                        </td>
+                    </tr>
 
-                     <tr valign="top">
-                         <th scope="row">Keep Original Filename</th>
-                         <td>
-                             <input type="checkbox" name="<?php echo esc_attr( KEEP_ORIGINAL_PREFIX_OPTION_ID ); ?>" value="1"
-                                    <?php checked( $this->keep_original_prefix, 1 ); ?> />
-                             <p class="description">If checked, the original filename will be included as a prefix in the new hashed filename.</p>
-                         </td>
-                     </tr>
+                    <tr valign="top">
+                        <th scope="row">Keep Original Filename</th>
+                        <td>
+                            <input type="checkbox" name="<?php echo esc_attr( KEEP_ORIGINAL_PREFIX_OPTION_ID ); ?>" value="1"
+                                <?php checked( $this->keep_original_prefix, 1 ); ?> />
+                            <p class="description">If checked, the original filename will be included as a prefix in the new hashed filename.</p>
+                        </td>
+                    </tr>
 
-                     <tr valign="top">
-                         <th scope="row">Custom Prefix</th>
-                         <td>
-                             <input type="text" name="<?php echo esc_attr( CUSTOM_PREFIX_OPTION_ID ); ?>"
+                    <tr valign="top">
+                        <th scope="row">Custom Prefix</th>
+                        <td>
+                            <input type="text" name="<?php echo esc_attr( CUSTOM_PREFIX_OPTION_ID ); ?>"
                                     value="<?php echo esc_attr( $this->custom_prefix ); ?>" />
-                             <p class="description">Enter a custom prefix to add to the hashed filename, e.g., website-name. This will appear after the original filename if both options are enabled.</p>
-                         </td>
-                     </tr>
-                 </table>
+                            <p class="description">Enter a custom prefix to add to the hashed filename, e.g., website-name. This will appear after the original filename if both options are enabled.</p>
+                        </td>
+                    </tr>
 
-                 <?php submit_button(); ?>
-             </form>
-         </div>
-         <?php
+					<tr valign="top">
+ 						<th scope="row">Add a unique ID</th>
+ 						<td>
+ 							<input type="checkbox" name="<?php echo esc_attr( ADD_UNIQID_OPTION_ID ); ?>" value="1"
+ 								<?php checked( $this->add_uniqid, 1 ); ?> />
+ 							<p class="description">If checked, generates a time-based identifier that will be included as part of the new filename hash.</p>
+ 						</td>
+ 					</tr>
+                </table>
+
+                <?php submit_button(); ?>
+            </form>
+        </div>
+        <?php
     }
 
     public function upload_to_hash( $file )
@@ -114,15 +124,23 @@ class HashFiles
             return $file;
         }
 
+        if ( 'zip' === strtolower( $file_info['extension'] ) ) {
+            return $file;
+        }
+
         $extension = strtolower( $file_info['extension'] );
 
         // Check if the extension is in the allowed list
         if ( \in_array( $extension, $this->allowed_extensions, true ) ) {
-            $unique_id   = bin2hex( random_bytes( 32 ) );
-            $hashed_name = hash( 'sha256', $unique_id );
+            $unique_bytes = bin2hex( random_bytes( 32 ) );
+            $hashed_name  = hash( 'sha256', $unique_bytes );
 
             // Start with the hashed name
-            $new_file_name = $hashed_name;
+            if ( $this->add_uniqid ) {
+                $new_file_name = $hashed_name . uniqid( '-' );
+            } else {
+                $new_file_name = $hashed_name;
+            }
 
             // Add the original filename prefix if the option is enabled
             if ( $this->keep_original_prefix ) {
