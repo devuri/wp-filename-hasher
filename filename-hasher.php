@@ -4,7 +4,7 @@
  * Plugin Name:       File Name Hasher
  * Plugin URI:        https://github.com/devuri/filename-hasher
  * Description:       Automatically renames uploaded files/images in WordPress to a unique hashed filename.
- * Version:           0.1.5
+ * Version:           0.1.6
  * Requires at least: 5.3.0
  * Requires PHP:      7.3.5
  * Author:            uriel
@@ -19,6 +19,9 @@ if ( ! \defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// plugin dir path
+\define( 'WPFNH_DIR_PATH', plugin_dir_path( __FILE__ ) );
+
 // setup option IDs.
 \define( 'REGISTERED_WPFNH_SETTINGS_ID', 'wpfnh_filename_hasher_settings' );
 \define( 'ALLOWED_EXTENSIONS_OPTION_ID', 'wpfnh_allowed_extensions' );
@@ -26,22 +29,25 @@ if ( ! \defined( 'ABSPATH' ) ) {
 \define( 'CUSTOM_PREFIX_OPTION_ID', 'wpfnh_custom_prefix' );
 \define( 'ADD_UNIQID_OPTION_ID', 'wpfnh_add_uniqid' );
 
-require_once plugin_dir_path( __FILE__ ) . 'src/HashFiles.php';
+require_once WPFNH_DIR_PATH . 'src/HashFiles.php';
+require_once WPFNH_DIR_PATH . 'src/Options.php';
 
 $allowed_extensions   = explode( ',', get_option( ALLOWED_EXTENSIONS_OPTION_ID, 'jpg,jpeg,png,gif,bmp,pdf' ) );
 $keep_original_prefix = get_option( KEEP_ORIGINAL_PREFIX_OPTION_ID, '0' );
 $custom_prefix        = get_option( CUSTOM_PREFIX_OPTION_ID, '' );
-$add_uniqid = get_option( ADD_UNIQID_OPTION_ID, '1' );
+$add_uniqid           = get_option( ADD_UNIQID_OPTION_ID, '1' );
 
 // maybe later allow the user to change allowed files.
 $file_hasher = new FileNameHasher\HashFiles(
-    $allowed_extensions,
-    (int) $keep_original_prefix,
-    $custom_prefix,
-    (int) $add_uniqid
+    new FileNameHasher\Options(
+        $allowed_extensions,
+        (int) $keep_original_prefix,
+        $custom_prefix,
+        (int) $add_uniqid
+    )
 );
 
-$file_hasher->add_prefilter();
+$file_hasher->addPrefilter();
 
 // remove options.
 register_activation_hook(
