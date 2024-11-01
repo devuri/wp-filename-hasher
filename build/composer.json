@@ -1,0 +1,7 @@
+{
+    "name": "devuri/build",
+    "type": "project",
+    "require": {
+        "devuri/zipit": "^0.2"
+    }
+}
