@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.7](https://github.com/devuri/wp-filename-hasher/compare/v0.1.6...v0.1.7) (2024-11-02)
+
+
+### Bug Fixes
+
+* minor refactor adjustments ([8a96a75](https://github.com/devuri/wp-filename-hasher/commit/8a96a7578edffc129aaf9ecc4036d0c999df9e18))
+
+
+### Miscellaneous Chores
+
+* **deps-dev:** update yoast/phpunit-polyfills requirement ([b9e4cd8](https://github.com/devuri/wp-filename-hasher/commit/b9e4cd8145cca6dcc3cd9cf705f6d17203b1bd2d))
+
 ## [0.1.6](https://github.com/devuri/wp-filename-hasher/compare/v0.1.5...v0.1.6) (2024-08-27)
 
 
